@@ -1,19 +1,21 @@
 pipeline {
-  agent any
-  stages {
-    stage('build') {
-      steps {
-        sh '''#!/bin/bash
-
-echo "Hello world"'''
-      }
+    agent any 
+    stages {
+        stage('clone') { 
+            steps {
+                sh "rm -rf *"
+                sh "git clone https://github.com/yparent/ajc"
+            }
+        }
+        stage('build') { 
+            steps {
+                sh "cd ajc/ && javac Main.java"
+            }
+        }
+        stage('run') { 
+            steps {
+                sh "cd ajc/ && java Main"
+            }
+        }
     }
-
-    stage('message') {
-      steps {
-        echo 'Module Jenkins AJC'
-      }
-    }
-
-  }
 }
