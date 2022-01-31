@@ -21,5 +21,11 @@ pipeline {
       }
     }
 
+    stage('notification') {
+      steps {
+        sh 'echo "Test OK"'
+      }
+    }
+
   }
 }
